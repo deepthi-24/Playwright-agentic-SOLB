@@ -141,3 +141,6 @@ The flow tests are compeltely manual.
 Theres no reason they cant both be self healing with some clever thinking...
 It's that this investigation needs to end somewhere. 
 ```
+
+## - Summary
+<img width="496" height="1266" alt="image" src="https://github.com/user-attachments/assets/a5a61a97-d186-4d16-ba4a-4ec753c2d567" />
