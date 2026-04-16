@@ -9,10 +9,7 @@
 
 
 <div class="govuk-form-group {raw.errors?.length > 0 ? 'govuk-form-group--error' : ''}">
-	<fieldset
-		class="govuk-fieldset"
-		role="group"
-	>
+	<fieldset class="govuk-fieldset">
 		<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 			<h1 class="govuk-fieldset__heading">
 				{config.label.text}

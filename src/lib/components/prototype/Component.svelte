@@ -115,5 +115,5 @@
 </script>
 
 {#if Component}
-	<svelte:component this={Component} config={component.config} {...rest} />
+	<Component config={component.config} {...rest} />
 {/if}
