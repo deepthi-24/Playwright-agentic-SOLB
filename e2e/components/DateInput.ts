@@ -19,6 +19,7 @@ export async function testDateInput(page: Page, config: any) {
 
   await test.step('Fieldset is correct', async () => {
     await expect(fieldset).toBeVisible();
+    await expect(fieldset).toHaveAttribute('role', 'group');
     if (actualConfig.hint) {
       await expect(fieldset).toHaveAttribute('aria-describedby', `${actualConfig.id}-hint`);
     }

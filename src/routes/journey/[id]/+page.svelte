@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { fetchJsonFile } from '$lib/ai/files';
 	import GovUKPage from '$lib/components/prototype/GovUKPage.svelte';
 	import MultiPage from '$lib/components/prototype/MultiPage.svelte';
 	import { onMount } from 'svelte';

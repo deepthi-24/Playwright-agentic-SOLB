@@ -4,18 +4,14 @@
 	import GovUKPage from './GovUKPage.svelte';
 	let {
 		pages,
-		currentPage
+		currentPage: initialCurrentPage
 	}: { pages: { title: string; components: any[] }[]; currentPage: number } = $props();
 
-	let activePage = $state(0);
+	let currentPage = $state(initialCurrentPage);
 	let data = $state<Record<string, Record<string, unknown>>>({});
 
-	$effect(() => {
-		activePage = currentPage;
-	});
-
 	let buttonText = $derived(
-		activePage === 0 ? 'Start' : activePage < pages.length - 1 ? 'Next' : 'Finish'
+		currentPage === 0 ? 'Start' : currentPage < pages.length - 1 ? 'Next' : 'Finish'
 	);
 
 	let errors = $state<any[]>([]);
@@ -37,7 +33,7 @@
 				formDataOut[key] = valueStr;
 			}
 		}
-		// data = { ...data, [pages[activePage].title]: Object.fromEntries(formData) };
+		// data = { ...data, [pages[currentPage].title]: Object.fromEntries(formData) };
 		const components = page.components.map((c: any) => ({
 			component: c.component,
 			id: c.id,
@@ -72,16 +68,16 @@
 		console.log({errors})
 		console.log(formDataOut, components, index);
 
-		data = { ...data, [pages[activePage].title]: formDataOut };
+		data = { ...data, [pages[currentPage].title]: formDataOut };
 
 		if (errors.length === 0) {
-			activePage++;
+			currentPage++;
 		}
 	}
 
 	function handleBackLinkClicked(event: CustomEvent<{ href: string }>) {
 		console.log('backlink clicked');
-		activePage--;
+		currentPage--;
 	}
 
 	$effect(() => {
@@ -96,7 +92,7 @@
 </script>
 
 {#each pages as page, index}
-	<div class={`${index === activePage ? 'show' : 'hide'}`}>
+	<div class={`${index === currentPage ? 'show' : 'hide'}`}>
 		<form id={page.title} onsubmit={(e) => handleSubmit(e, page, index)} >
 			<GovUKPage title={page.title} errors={globalErrors?.map((e: any) => ({ href: `#${e.id}`, text: e.message }))}>
 				<Components components={page.components} errors={errors} onBackLinkClicked={handleBackLinkClicked} />
