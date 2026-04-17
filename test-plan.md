@@ -1,4 +1,4 @@
-# GOV.UK Prototype System Test Plan
+#  Prototype System Test Plan
 
 ## Application Overview
 
